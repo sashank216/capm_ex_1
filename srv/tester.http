@@ -1,0 +1,91 @@
+###Get the service documnet
+http://localhost:4004/odata/v4/CatalogService
+
+###Get the metdata of the document
+http://localhost:4004/odata/v4/CatalogService/$metadata
+
+###Get the all employee data
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+
+###Get the single employee data by KEY ID
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C19787FB
+
+###Get the count of the employee data
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/$count
+
+###Get the data chunk by chunk = pagination
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$top=2&skip=4
+
+###Get the data based on filter
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=bankName eq 'My Bank of New York'
+
+###Pattern based filtering
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=contains(nameFirst,'S')
+
+###Get the data which is only selected
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$select=nameFirst,nameLast,loginName
+
+###Get the prodcuts 
+http://localhost:4004/odata/v4/CatalogService/Products
+
+###Get the single product using id
+http://localhost:4004/odata/v4/CatalogService/Products/74867AD200E41EDBA5D8B06B26EB4052
+###Get the product using lazy loading 
+http://localhost:4004/odata/v4/CatalogService/Products/74867AD200E41EDBA5D8B06B26EB4052/To_Items
+
+###Get the product and item data together in a single call
+http://localhost:4004/odata/v4/CatalogService/Products/74867AD200E41EDBA5D8B06B26EB4052?$expand=To_Items
+
+###Create the single employee data
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+
+{     
+    "nameFirst": "Mahendra",
+    "nameMiddle": "Singh",
+    "nameLast": "Dhoni",
+    "nameInitials": "MSD",
+    "sex": "M",
+    "language": "B",
+    "phoneNumber": "+919381015284",
+    "email": "ms.dhoni@gmail.com",
+    "loginName": "MAHI",
+    "Currency_code": "Rs",
+    "salaryAmount": 12500000,
+    "accountNumber": "07071981",
+    "bankId": "7777777",
+    "bankName": "State Bank Of India"
+}
+
+###Get or retrieve the data which is created
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/fe82b22c-bf85-4fd5-9b81-1b4d00c4af7c
+
+###Update the data which is created using Patch
+PATCH http://localhost:4004/odata/v4/CatalogService/EmployeeSet/fe82b22c-bf85-4fd5-9b81-1b4d00c4af7c
+Content-Type: application/json
+
+{
+ "salaryAmount": 175000
+}
+
+###Delete the employee data from db - using Delete
+DELETE http://localhost:4004/odata/v4/CatalogService/EmployeeSet/fe82b22c-bf85-4fd5-9b81-1b4d00c4af7c
+
+
+###Get all PO
+http://localhost:4004/odata/v4/CatalogService/POs
+
+###Get Single Po
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052
+
+###Get PO with its items
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052?$expand=Items
+
+###Get Single Po
+POST http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052/CatalogService.boost
+Content-Type: application/json
+
+{}
+
+###Get function data for the largest order
+http://localhost:4004/odata/v4/CatalogService/largestOrder()
